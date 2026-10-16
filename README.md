@@ -16,7 +16,7 @@ python src/main.py             # 运行（数据在项目目录 data/）
 python src/main.py --selfcheck # 无 GUI 自检
 ```
 
-前端资源位于 `www/`（index.html + css + js）。
+前端资源位于 `src/www/`（index.html + css + js），打包时随程序内置。
 
 ## License
 
