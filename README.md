@@ -8,7 +8,17 @@
 - 单实例锁：重复启动只保留一个窗口
 - 便携模式：exe（或项目）同目录放置 `PORTABLE` 空标记文件，数据随程序目录走，整目录拷贝即迁移
 
-## 快速开始
+## 下载使用（免安装）
+
+仓库根目录附带免安装单文件程序：
+
+- **`StudyCheckin.exe`**（约 12 MB）：双击即用，无需安装 Python。默认数据存于 `%APPDATA%\StudyCheckinV2`
+- 在 exe 旁新建名为 `PORTABLE` 的空文件 → 切换便携模式，数据随程序目录走（整文件夹拷贝即迁移）
+- 自检：`StudyCheckin.exe --selfcheck`（报告落盘，弹窗摘要）
+
+不想下载整包？源码运行见下节。
+
+## 源码运行
 
 ```bash
 pip install -r requirements.txt
