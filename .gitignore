@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+data/
+exports/
+build/
+dist/
+*.spec
+PORTABLE

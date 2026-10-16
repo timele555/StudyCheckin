@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学习进度打卡</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 33 33" width="26" height="26" aria-hidden="true">
+        <rect x="0.5" y="0.5" width="32" height="32" rx="7" fill="#26241E"/>
+        <rect x="6.6" y="8.9" width="19.8" height="16.6" rx="4.5" fill="#FAF9F5"/>
+        <circle cx="11.4" cy="9.5" r="1.15" fill="#26241E"/>
+        <circle cx="21.6" cy="9.5" r="1.15" fill="#26241E"/>
+        <path d="M10.7 17.6 15 22 22.4 13.5" fill="none" stroke="#D97757" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="logo-title">学习打卡</div>
+        <div class="logo-sub">记录每一天的进步</div>
+      </div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="sidebar-foot">
+      <div id="foot-stage" class="foot-stage"></div>
+      <div class="foot-hint">数据 · 单机本地存储</div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <section id="page-today" class="page"></section>
+    <section id="page-history" class="page"></section>
+    <section id="page-settings" class="page"></section>
+  </main>
+
+  <div id="toast"></div>
+
+  <script src="js/seed.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

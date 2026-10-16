@@ -1,0 +1,4 @@
+pywebview
+bottle
+waitress
+jinja2
