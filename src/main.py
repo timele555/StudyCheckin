@@ -10,7 +10,7 @@ import webbrowser
 from datetime import datetime
 from pathlib import Path
 import webview
-APP_VERSION = '2.1.2'
+APP_VERSION = '2.2.0'
 SINGLE_INSTANCE_PORT = 57311
 FROZEN = getattr(sys, 'frozen', False)
 BASE = Path(sys.executable).resolve().parent if FROZEN else Path(__file__).resolve().parent
@@ -142,7 +142,7 @@ def run_checks():
             s.close()
             add('port', '单实例端口', True, f'127.0.0.1:{SINGLE_INSTANCE_PORT} 可绑定')
         except OSError:
-            pass
+            add('port', '单实例端口', False, f'127.0.0.1:{SINGLE_INSTANCE_PORT} 被占用', '程序可能已在运行；若确认未运行请重启系统后重试。')
         free_mb = shutil.disk_usage(str(DATA_DIR)).free // 1048576
         add('disk', '磁盘剩余空间', free_mb >= 50, f'{free_mb} MB 可用（数据盘）', '' if free_mb >= 50 else '空间不足 50MB，请清理磁盘。')
         EXPORT_DIR.mkdir(parents=True, exist_ok=True)

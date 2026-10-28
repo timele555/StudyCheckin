@@ -26,7 +26,17 @@ python src/main.py             # 运行（数据在项目目录 data/）
 python src/main.py --selfcheck # 无 GUI 自检
 ```
 
-前端资源位于 `src/www/`（index.html + css + js），打包时随程序内置。
+前端资源位于 `src/www/`（index.html + css + js），打包时随程序内置。仓库根目录 `www/` 为同步副本，两份一致。
+
+## 从源码构建
+
+```bash
+pip install -r requirements.txt pyinstaller
+python build_release.py     # 产出 dist/StudyCheckin.exe（带 ICO 图标），并同步到仓库根目录
+python tests_release.py     # 发布回归测试（JS 语法 / 资源 / 自检全项），应全部通过
+```
+
+新手引导（v2.2.0）：渐变背景 + 步骤条卡片式向导，右上角可随时「跳过引导直接进入」（默认创建「学习」模块）。
 
 ## License
 
