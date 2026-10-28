@@ -1,6 +1,6 @@
 [project]
 name = "studycheckin"
-version = "2.1.2"
+version = "2.2.0"
 description = "学习进度打卡 V2：pywebview 桌面端 · 原子写入与自动备份 · 便携模式"
 readme = "README.md"
 license = { file = "LICENSE" }

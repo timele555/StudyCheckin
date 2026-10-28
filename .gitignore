@@ -6,3 +6,7 @@ build/
 dist/
 *.spec
 PORTABLE
+dist/
+build/
+__pycache__/
+*.spec

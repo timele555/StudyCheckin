@@ -239,12 +239,28 @@ textarea.json-area { width: 100%; min-height: 220px; font-family: Consolas, "Cou
 .small { font-size: 12px; }
 
 /* ---------- V2 新手引导 ---------- */
-.ob-overlay { position: fixed; inset: 0; background: rgba(38, 36, 30, .45); backdrop-filter: blur(2px);
+.ob-overlay { position: fixed; inset: 0; background: linear-gradient(160deg, #26241E 0%, #3A362B 55%, #59503F 100%);
   display: flex; align-items: center; justify-content: center; z-index: 100; }
-.ob-card { width: 560px; max-width: 92vw; max-height: 88vh; overflow-y: auto; background: var(--bg);
-  border-radius: 20px; padding: 34px 38px 26px; box-shadow: 0 24px 80px rgba(0,0,0,.35); text-align: center; }
-.ob-card h1 { font-size: 22px; font-weight: 650; margin-bottom: 8px; }
+.ob-card { width: 620px; max-width: 92vw; max-height: 88vh; overflow-y: auto; background: #FAF9F5;
+  border-radius: 18px; padding: 30px 36px 24px; box-shadow: 0 24px 70px rgba(0,0,0,.5); text-align: center; }
+.ob-card h1 { font-size: 21px; font-weight: 700; margin-bottom: 8px; }
 .ob-sub { color: var(--ink-2); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
+.ob-steps2 { display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+.ob-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: none; }
+.ob-sdot { width: 34px; height: 34px; border-radius: 50%; background: #EFEBE0; color: #8D8778;
+  font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.ob-step.on .ob-sdot { background: var(--accent); color: #fff; box-shadow: 0 6px 16px rgba(217,119,87,.4); }
+.ob-step.done .ob-sdot { background: #E5EFE0; color: #4F7A43; }
+.ob-slabel { color: var(--ink-2); font-size: 11.5px; font-weight: 600; }
+.ob-step.on .ob-slabel { color: var(--accent); }
+.ob-sline { flex: 1; height: 2px; background: #E5E1D5; margin: 0 8px 22px; }
+.ob-sline.on { background: var(--accent); }
+.ob-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.ob-brand { font-weight: 800; font-size: 14px; letter-spacing: .3px; color: var(--ink); }
+.ob-skip { font-size: 12.5px; color: var(--ink-2); padding: 7px 14px; border: 1px solid var(--border);
+  border-radius: 999px; background: transparent; }
+.ob-skip:hover { color: var(--accent); border-color: var(--accent); background: #FDF8F4; }
+.ob-success { font-size: 44px; margin: 6px 0 2px; }
 .ob-steps { display: flex; gap: 7px; justify-content: center; margin-bottom: 20px; }
 .ob-dot { width: 8px; height: 8px; border-radius: 50%; background: #E2DFD3; }
 .ob-dot.on { background: var(--accent); width: 22px; border-radius: 5px; }

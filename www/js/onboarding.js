@@ -11,8 +11,7 @@
   let obModules = []; // [{id, name, order, weights}]
   let obTasks = [];   // [{title, moduleId, minutes, daily:true, weekdays:[]}]
   let ctx = null;     // {S, save, done}
-
-  const WD = ['一', '二', '三', '四', '五', '六', '日']; // 显示顺序周一在前
+  const STEP_LABELS = ['欢迎', '模块', '任务', '完成'];
 
   function mkMod(name, order) {
     return { id: 'ob' + Date.now().toString(36) + Math.floor(Math.random() * 999), name: name.trim(), order, weights: { A: 10 }, stageNotes: {} };
@@ -51,14 +50,28 @@
     ctx.done();
     ApiBridge.toast('设置完成，开始打卡吧！');
   }
+  function skip() {
+    if (!confirm('跳过引导：将创建一个默认「学习」模块，之后随时可在设置里添加任务。确定跳过？')) return;
+    finish();
+  }
 
   /* ---------- 步骤渲染 ---------- */
+  function stepsBar() {
+    const wrap = h('div', { class: 'ob-steps2' });
+    STEP_LABELS.forEach((lb, i) => {
+      const n = i + 1;
+      wrap.append(h('div', { class: 'ob-step' + (n === step ? ' on' : '') + (n < step ? ' done' : '') },
+        h('div', { class: 'ob-sdot' }, n < step ? '✓' : String(n)),
+        h('div', { class: 'ob-slabel' }, lb)));
+      if (n < STEP_LABELS.length) wrap.append(h('div', { class: 'ob-sline' + (n < step ? ' on' : '') }));
+    });
+    return wrap;
+  }
   function render() {
     const box = obEl;
     box.innerHTML = '';
     const card = h('div', { class: 'ob-card' });
-    card.append(h('div', { class: 'ob-steps' },
-      [1, 2, 3, 4].map(i => h('span', { class: 'ob-dot' + (i === step ? ' on' : '') }))));
+    card.append(stepsBar());
     if (step === 1) card.append(...[].concat(stepWelcome()));
     if (step === 2) card.append(...[].concat(stepModules()));
     if (step === 3) card.append(...[].concat(stepTasks()));
@@ -73,7 +86,9 @@
 
   function stepWelcome() {
     return [
-      h('div', { class: 'ob-logo' }),
+      h('div', { class: 'ob-head' },
+        h('div', { class: 'ob-brand' }, '✓ 学习打卡'),
+        step < 4 ? h('a', { class: 'ob-skip', href: 'javascript:void(0)', onclick: skip }, '跳过引导，直接进入 →') : h('span')),
       h('h1', null, '欢迎使用学习打卡'),
       h('p', { class: 'ob-sub' }, '三步设置，开始你的每日学习打卡'),
       h('div', { class: 'ob-feats' },
@@ -115,6 +130,8 @@
     }
     renderList();
     return [
+      h('div', { class: 'ob-head' }, h('div', { class: 'ob-brand' }, '✓ 学习打卡'),
+        h('a', { class: 'ob-skip', href: 'javascript:void(0)', onclick: skip }, '跳过引导，直接进入 →')),
       h('h1', null, '你在学什么？'),
       h('p', { class: 'ob-sub' }, '选一个常见场景一键开始，或自己添加学习模块（模块 = 学习内容的分类）'),
       presetBox,
@@ -150,6 +167,8 @@
     iT.addEventListener('keydown', e => { if (e.key === 'Enter') add(); });
     renderList();
     return [
+      h('div', { class: 'ob-head' }, h('div', { class: 'ob-brand' }, '✓ 学习打卡'),
+        h('a', { class: 'ob-skip', href: 'javascript:void(0)', onclick: skip }, '跳过引导，直接进入 →')),
       h('h1', null, '每天要做哪些任务？'),
       h('p', { class: 'ob-sub' }, '填写「期望时长」后，计时达到它就会自动勾选完成'),
       list,
@@ -160,9 +179,10 @@
 
   function stepDone() {
     return [
-      h('div', { class: 'ob-logo' }),
-      h('h1', null, '设置完成！'),
-      h('p', { class: 'ob-sub' }, obModules.length + ' 个模块 · ' + obTasks.length + ' 个每日任务'),
+      h('div', { class: 'ob-head' }, h('div', { class: 'ob-brand' }, '✓ 学习打卡')),
+      h('div', { class: 'ob-success' }, '🎉'),
+      h('h1', { style: { textAlign: 'center' } }, '设置完成！'),
+      h('p', { class: 'ob-sub', style: { textAlign: 'center' } }, obModules.length + ' 个模块 · ' + obTasks.length + ' 个每日任务'),
       h('div', { class: 'ob-feats' },
         ['点任务前的方框打卡', '点 ▶ 开始计时，达到目标时长自动完成', '右侧「番茄钟」开关可打开计时面板', '「历史」里点任意日期回看或补记', '「设置」里随时加模块、改任务'].map(t => h('div', { class: 'ob-feat' }, t))),
       navBtns(true, '开始使用', finish)
